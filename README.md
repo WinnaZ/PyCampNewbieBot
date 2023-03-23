@@ -49,3 +49,8 @@ Primero que nada para poder correr un bot de telegram, vamos a necesitar tener u
 
 Ahora vamos a it al archivo config.py y vamos a poner donde dice TOKEN el token que nos dio el bot father.
 
+y Listo!
+
+``` bash
+python3 bot.py
+```
