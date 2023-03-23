@@ -1,27 +1,21 @@
 import logging
-import os
-from telegram.ext import Updater
+from telegram.ext import ApplicationBuilder
 from config import TOKEN
-import base
-import ejemplo
-
+from base import start_handler, echo_handler
+from ejemplo import ejemplo_handler
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO)
-logger = logging.getLogger(__name__)
+    level=logging.INFO
+)
 
 
-def set_handlers(updater):
-    base.set_handlers(updater)
-    ejemplo.set_handlers(updater)
-  
+if __name__ == '__main__':
+    application = ApplicationBuilder().token(TOKEN).build()
+    
+    
+    application.add_handler(start_handler)
+    application.add_handler(echo_handler)
+    application.add_handler(ejemplo_handler)
 
-logger.info('Starting Bot')
-
-updater = Updater(TOKEN)
-
-#models_db_connection()
-set_handlers(updater)
-
-updater.start_polling()
+    application.run_polling()
